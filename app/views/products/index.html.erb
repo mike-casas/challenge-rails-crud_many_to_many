@@ -1,0 +1,26 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Productos</h1>
+      <%= link_to "crear producto", new_product_path , class: "btn btn-primary btn-create", type: "button" %>
+
+      <table class="table table-striped tab-product">
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Options</th>
+        </tr>
+        <% @products.each do |p| %>
+        <tr>
+          <td><%= link_to p.name, product_path(p) %></td>
+          <td><%= p.price %></td>
+          <td>
+          <%= link_to '<i class="glyphicon glyphicon-edit"></i>'.html_safe, edit_product_path(p) %>
+          <%= link_to '<i class="glyphicon glyphicon-trash"></i>'.html_safe, product_path(p), method:  :delete, data: {confirm: "desea eliminarlo"} %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

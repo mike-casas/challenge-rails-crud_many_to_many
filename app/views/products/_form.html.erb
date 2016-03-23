@@ -1,0 +1,24 @@
+      <%= form_for @product do |f| %>
+        <%= render 'layouts/error_messages', object: f.object %>
+        <div class="form-group">
+
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name , class: "form-control"%>
+        </div>
+        <div class="form-group">
+
+        <%= f.label :price, "Price" %>
+        <%= f.number_field :price, class: "form-control" %>
+        <div class="form-group">
+        <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) do |b|  %>
+          <div class="checkbox">
+            <label>
+         <%= b.label(:"data-value" => b.value ) { b.check_box + b.text }   %>
+            </label>
+          </div>
+       <% end %>
+        <%= f.submit yield(:text_button), :disable_with => 'guardaring...', class: "btn btn-primary" %>
+        </div>
+        </div>
+      <% end %>
+
